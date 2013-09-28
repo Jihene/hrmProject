@@ -12,5 +12,4 @@ public interface ProjectManagementServicesRemote {
 
 	public void addProject(Project project);
 	
-	public void assignEmployeesToProject(List<Employee> employees,int idProject);
 }
