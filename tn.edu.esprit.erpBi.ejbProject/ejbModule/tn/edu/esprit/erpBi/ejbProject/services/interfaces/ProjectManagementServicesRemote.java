@@ -23,4 +23,10 @@ public interface ProjectManagementServicesRemote {
 	public List<Project> findProjectsByDescription(String description);
 
 	public List<Employee> findEmployeesByIdProject(int idProject);
+
+	public void assignProjectToEmployee(int idProject, int idEmployee);
+
+	public void assignEmployeeToProject(Employee employee, int idProject);
+
+	public void displayProjectByIdEmployee(int idEmployee);
 }

@@ -2,6 +2,7 @@ package tn.edu.esprit.erpBi.ejbProject.services.impl;
 
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -9,6 +10,7 @@ import javax.persistence.Query;
 
 import tn.edu.esprit.erpBi.ejbProject.domain.Employee;
 import tn.edu.esprit.erpBi.ejbProject.domain.Project;
+import tn.edu.esprit.erpBi.ejbProject.services.interfaces.EmployeesServicesLocal;
 import tn.edu.esprit.erpBi.ejbProject.services.interfaces.ProjectManagementServicesLocal;
 import tn.edu.esprit.erpBi.ejbProject.services.interfaces.ProjectManagementServicesRemote;
 
@@ -20,6 +22,9 @@ public class ProjectManagementServices implements
 		ProjectManagementServicesRemote, ProjectManagementServicesLocal {
 	@PersistenceContext
 	private EntityManager entityManager;
+
+	@EJB
+	private EmployeesServicesLocal employeesServicesLocal;
 
 	/**
 	 * Default constructor.
@@ -69,5 +74,37 @@ public class ProjectManagementServices implements
 		Query query = entityManager.createQuery(jpql);
 		query.setParameter("param", idProject);
 		return query.getResultList();
+	}
+
+	@Override
+	public void assignProjectToEmployee(int idProject, int idEmployee) {
+		Project projectFound = entityManager.find(Project.class, idProject);
+		Employee employeeFound = employeesServicesLocal
+				.findEmployeeById(idEmployee);
+
+		employeeFound.setProject(projectFound);
+		employeesServicesLocal.updateEmployee(employeeFound);
+
+	}
+
+	@Override
+	public void displayProjectByIdEmployee(int idEmployee) {
+		Employee employeeFound = employeesServicesLocal
+				.findEmployeeById(idEmployee);
+
+		System.out.println(employeeFound.getProject().getDescriptionProject());
+
+	}
+
+	@Override
+	public void assignEmployeeToProject(Employee employee, int idProject) {
+		Project projectFound = findProjectById(idProject);
+		List<Employee> employeesProjectFound = findEmployeesByIdProject(idProject);
+
+		employeesProjectFound.add(employee);
+		projectFound.linkEmployeesToThisProject(employeesProjectFound);
+
+		updateProject(projectFound);
+
 	}
 }
