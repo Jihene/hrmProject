@@ -1,12 +1,11 @@
 package tn.edu.esprit.erpBi.clientProject.tests;
 
-import java.util.List;
-
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 
 import tn.edu.esprit.erpBi.ejbProject.domain.Employee;
+import tn.edu.esprit.erpBi.ejbProject.domain.Project;
 import tn.edu.esprit.erpBi.ejbProject.services.interfaces.EmployeesServicesRemote;
 import tn.edu.esprit.erpBi.ejbProject.services.interfaces.ProjectManagementServicesRemote;
 
@@ -19,10 +18,11 @@ public class TestRealPlatform {
 		EmployeesServicesRemote employeesServicesRemote = (EmployeesServicesRemote) context
 				.lookup("ejb:/tn.edu.esprit.erpBi.ejbProject/EmployeesServices!tn.edu.esprit.erpBi.ejbProject.services.interfaces.EmployeesServicesRemote");
 
-		List<Employee> employeesFound = employeesServicesRemote
-				.findAllEmployees();
-		projectManagementServicesRemote.assignEmployeesToProject(
-				employeesFound, 1);
-
+		Project project = new Project("piDev");
+		Employee employee = new Employee("rania");
+		
+		employee.setProject(project);
+		
+		employeesServicesRemote.addEmployee(employee);
 	}
 }

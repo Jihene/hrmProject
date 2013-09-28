@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -25,6 +27,7 @@ public class Project implements Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getIdProject() {
 		return this.idProject;
 	}
@@ -48,6 +51,11 @@ public class Project implements Serializable {
 
 	public void setEmployees(List<Employee> employees) {
 		this.employees = employees;
+	}
+
+	public Project(String descriptionProject) {
+		super();
+		this.descriptionProject = descriptionProject;
 	}
 
 }

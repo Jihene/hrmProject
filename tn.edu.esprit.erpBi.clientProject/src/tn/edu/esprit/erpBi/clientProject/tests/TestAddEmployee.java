@@ -19,7 +19,6 @@ public class TestAddEmployee {
 					.lookup("ejb:/tn.edu.esprit.erpBi.ejbProject/EmployeesServices!tn.edu.esprit.erpBi.ejbProject.services.interfaces.EmployeesServicesRemote");
 
 			Employee employee=new Employee();
-			employee.setIdEmployee(2);
 			employee.setNameEmployee("emp1");
 			
 			proxy.addEmployee(employee);

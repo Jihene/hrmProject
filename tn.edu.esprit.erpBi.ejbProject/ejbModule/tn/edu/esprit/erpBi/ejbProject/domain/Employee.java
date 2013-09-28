@@ -2,7 +2,10 @@ package tn.edu.esprit.erpBi.ejbProject.domain;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -24,6 +27,7 @@ public class Employee implements Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getIdEmployee() {
 		return this.idEmployee;
 	}
@@ -40,13 +44,18 @@ public class Employee implements Serializable {
 		this.nameEmployee = nameEmployee;
 	}
 
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.PERSIST)
 	public Project getProject() {
 		return project;
 	}
 
 	public void setProject(Project project) {
 		this.project = project;
+	}
+
+	public Employee(String nameEmployee) {
+		super();
+		this.nameEmployee = nameEmployee;
 	}
 
 }
