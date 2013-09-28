@@ -3,6 +3,7 @@ package tn.edu.esprit.erpBi.ejbProject.domain;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -44,7 +45,8 @@ public class Project implements Serializable {
 		this.descriptionProject = descriptionProject;
 	}
 
-	@OneToMany(mappedBy = "project")
+	@OneToMany(mappedBy = "project", cascade = { CascadeType.PERSIST,
+			CascadeType.MERGE })
 	public List<Employee> getEmployees() {
 		return employees;
 	}
@@ -56,6 +58,13 @@ public class Project implements Serializable {
 	public Project(String descriptionProject) {
 		super();
 		this.descriptionProject = descriptionProject;
+	}
+
+	public void linkEmployeesToThisProject(List<Employee> employees) {
+		this.employees = employees;
+		for (Employee e : employees) {
+			e.setProject(this);
+		}
 	}
 
 }

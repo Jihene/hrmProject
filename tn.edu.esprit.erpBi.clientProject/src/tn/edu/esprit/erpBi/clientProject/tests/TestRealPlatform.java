@@ -1,5 +1,8 @@
 package tn.edu.esprit.erpBi.clientProject.tests;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
@@ -13,16 +16,19 @@ public class TestRealPlatform {
 	public static void main(String[] args) throws NamingException {
 		Context context = new InitialContext();
 		ProjectManagementServicesRemote projectManagementServicesRemote = (ProjectManagementServicesRemote) context
-				.lookup("ejb:/tn.edu.esprit.erpBi.ejbProject/ProjectManagementServices!tn.edu.esprit.erpBi.ejbProject.services.interfaces.ProjectManagementServicesRemote");
+				.lookup("ejb:/tn.edu.esprit.erpBi.hrmProject/ProjectManagementServices!tn.edu.esprit.erpBi.ejbProject.services.interfaces.ProjectManagementServicesRemote");
 
 		EmployeesServicesRemote employeesServicesRemote = (EmployeesServicesRemote) context
-				.lookup("ejb:/tn.edu.esprit.erpBi.ejbProject/EmployeesServices!tn.edu.esprit.erpBi.ejbProject.services.interfaces.EmployeesServicesRemote");
+				.lookup("ejb:/tn.edu.esprit.erpBi.hrmProject/EmployeesServices!tn.edu.esprit.erpBi.ejbProject.services.interfaces.EmployeesServicesRemote");
 
 		Project project = new Project("piDev");
 		Employee employee = new Employee("rania");
-		
-		employee.setProject(project);
-		
-		employeesServicesRemote.addEmployee(employee);
+
+		List<Employee> employees = new ArrayList<Employee>();
+		employees.add(employee);
+
+		project.linkEmployeesToThisProject(employees);
+
+		projectManagementServicesRemote.addProject(project);
 	}
 }

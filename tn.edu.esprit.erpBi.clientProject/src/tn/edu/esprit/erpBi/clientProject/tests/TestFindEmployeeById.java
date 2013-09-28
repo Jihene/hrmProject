@@ -16,7 +16,7 @@ public class TestFindEmployeeById {
 			try {
 			Context context = new InitialContext();
 			EmployeesServicesRemote proxy = (EmployeesServicesRemote) context
-					.lookup("ejb:/tn.edu.esprit.erpBi.ejbProject/EmployeesServices!tn.edu.esprit.erpBi.ejbProject.services.interfaces.EmployeesServicesRemote");
+					.lookup("ejb:/tn.edu.esprit.erpBi.hrmProject/EmployeesServices!tn.edu.esprit.erpBi.ejbProject.services.interfaces.EmployeesServicesRemote");
 
 			Employee employee=proxy.findEmployeeById(1);
 			System.out.println(employee.getNameEmployee());

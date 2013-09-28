@@ -13,10 +13,10 @@ public class TestInitDb {
 	public static void main(String[] args) throws NamingException {
 		Context context = new InitialContext();
 		ProjectManagementServicesRemote projectManagementServicesRemote = (ProjectManagementServicesRemote) context
-				.lookup("ejb:/tn.edu.esprit.erpBi.ejbProject/ProjectManagementServices!tn.edu.esprit.erpBi.ejbProject.services.interfaces.ProjectManagementServicesRemote");
+				.lookup("ejb:/tn.edu.esprit.erpBi.hrmProject/ProjectManagementServices!tn.edu.esprit.erpBi.ejbProject.services.interfaces.ProjectManagementServicesRemote");
 
 		EmployeesServicesRemote employeesServicesRemote = (EmployeesServicesRemote) context
-				.lookup("ejb:/tn.edu.esprit.erpBi.ejbProject/EmployeesServices!tn.edu.esprit.erpBi.ejbProject.services.interfaces.EmployeesServicesRemote");
+				.lookup("ejb:/tn.edu.esprit.erpBi.hrmProject/EmployeesServices!tn.edu.esprit.erpBi.ejbProject.services.interfaces.EmployeesServicesRemote");
 
 		Employee employee = new Employee("jihene");
 		Employee employee2 = new Employee("hedy");

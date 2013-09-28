@@ -18,7 +18,7 @@ public class TestFindAllEmployees {
 			try {
 			Context context = new InitialContext();
 			EmployeesServicesRemote proxy = (EmployeesServicesRemote) context
-					.lookup("ejb:/tn.edu.esprit.erpBi.ejbProject/EmployeesServices!tn.edu.esprit.erpBi.ejbProject.services.interfaces.EmployeesServicesRemote");
+					.lookup("ejb:/tn.edu.esprit.erpBi.hrmProject/EmployeesServices!tn.edu.esprit.erpBi.ejbProject.services.interfaces.EmployeesServicesRemote");
 			
 			List<Employee> employees=proxy.findAllEmployees();
 			System.out.println("the size of the list is:"+ employees.size());

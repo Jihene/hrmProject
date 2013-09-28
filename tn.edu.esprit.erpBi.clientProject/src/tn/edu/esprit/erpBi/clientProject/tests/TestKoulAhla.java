@@ -13,7 +13,7 @@ public class TestKoulAhla {
 		try {
 			Context context = new InitialContext();
 			GreetingServicesRemote proxy = (GreetingServicesRemote) context
-					.lookup("ejb:/tn.edu.esprit.erpBi.ejbProject/GreetingServices!tn.edu.esprit.erpBi.ejbProject.services.interfaces.GreetingServicesRemote");
+					.lookup("ejb:/tn.edu.esprit.erpBi.hrmProject/GreetingServices!tn.edu.esprit.erpBi.ejbProject.services.interfaces.GreetingServicesRemote");
 //tn.edu.esprit.erpBi.ejbProject/GreetingServices!tn.edu.esprit.erpBi.ejbProject.services.interfaces.GreetingServicesRemote
 			proxy.koulAhla();
 			
