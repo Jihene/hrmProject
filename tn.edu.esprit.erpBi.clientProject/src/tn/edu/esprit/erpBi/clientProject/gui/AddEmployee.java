@@ -111,6 +111,7 @@ public class AddEmployee extends JFrame {
 				}
 
 			}
+		
 		});
 		contentPane.add(btnNewButton, "8, 14");
 	}
